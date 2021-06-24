@@ -50,7 +50,7 @@
             />
             <svg
               v-if="!card.showPass"
-              @click="card.showPass = !card.showPass"
+              @click="card.showPass = true;"
               style="margin-left: 10px; max-width: 30px"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -62,7 +62,7 @@
             </svg>
             <svg
               v-if="card.showPass"
-              @click="card.showPass = !card.showPass"
+              @click="card.showPass = false;"
               style="margin-left: 10px; max-width: 30px"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -88,7 +88,7 @@
               class="c-btn pass-card"
               @click.prevent="
                 saveCard(card, i, 'save');
-                card.disabled = false;
+                card.disabled = true;
                 card.showPass = false;
               "
             >
