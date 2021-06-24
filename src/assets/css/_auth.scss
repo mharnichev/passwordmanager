@@ -1,0 +1,42 @@
+.c-input-label {
+  display: flex;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.c-input-h4 {
+  padding-right: 10px;
+  max-width: 80px;
+  width: 100%;
+}
+
+.c-input-input {
+  border: none;
+  border-bottom: 1px dashed #000;
+}
+
+.c-input-input:focus {
+  outline: none;
+  border-bottom: 1px solid #000;
+}
+
+.c-input-error {
+  position: absolute;
+  color: red;
+  padding: 0.5rem 0;
+  font-size: 13px;
+  bottom: 10px;
+  z-index: -1;
+}
+
+.c-btn {
+  display: flex;
+  border: 1px solid #000;
+  background-color: transparent;
+  padding: 8px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+
+
