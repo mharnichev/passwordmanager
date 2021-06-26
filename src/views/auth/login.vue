@@ -41,29 +41,17 @@
 </template>
 
 <script>
+import {validate} from "@/mixins/validate";
+
 export default {
   name: "login",
+  mixins: [validate],
   data() {
     return {
-      email: "",
-      password: "",
-
-      errorEmail: false,
-      errorPassword: false,
-
       errorEmailMessage: "",
-      errorPasswordMessage: "",
-
-      accessEmail: false,
-      accessPassword: false,
     };
   },
   methods: {
-    validateEmail(val) {
-      const regularExpressionEmail =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return regularExpressionEmail.test(val);
-    },
     auth() {
       if (!this.accessEmail && !this.accessPassword) {
         alert(`Wow-wow, cowboy, something wrong!
@@ -90,7 +78,7 @@ export default {
     },
   },
   watch: {
-    login: function (val, oldVal) {
+    email: function (val, oldVal) {
       if (val.length > 3 && val !== oldVal) {
         if (this.validateEmail(val) === false) {
           this.errorEmail = true;
@@ -173,14 +161,5 @@ export default {
     padding: 4px;
     color: #fff;
   }
-
-  //&__sing-in {
-  //  display: flex;
-  //  border: 1px solid #000;
-  //  background-color: transparent;
-  //  padding: 8px;
-  //  cursor: pointer;
-  //  margin-bottom: 30px;
-  //}
 }
 </style>

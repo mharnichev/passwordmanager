@@ -53,36 +53,23 @@
 </template>
 
 <script>
+import {validate} from "@/mixins/validate";
+
 export default {
   name: "Registration",
+  mixins: [validate],
   data() {
     return {
-      email: "",
-      password: "",
       confirmPassword: "",
-
-      errorEmail: false,
-      errorPassword: false,
       errorConfirmPassword: false,
-
-      emailErrorMessage: "",
-      errorPasswordMessage: "",
-
-      accessEmail: false,
-      accessPassword: false,
     };
   },
   methods: {
-    validateEmail(val) {
-      const regularExpressionEmail =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return regularExpressionEmail.test(val);
-    },
     reg() {
-      if (!this.accessEmail && !this.accessPassword) {
+      if (!this.accessEmail && !this.accessPassword || !this.accessEmail || !this.accessPassword) {
         alert(`Wow-wow, cowboy, something wrong!
                Check your login and password again`);
-      } else {
+      } else if(this.accessEmail && this.accessPassword) {
         let newUserAccount = {
           email: this.email,
           password: this.password,
@@ -125,8 +112,8 @@ export default {
         }
       }
     },
-    confirmPassword: function (val) {
-      if (val.length <= 8) {
+    confirmPassword: function (val, oldVal) {
+      if (val !== oldVal && val.length <= 8) {
         this.errorPasswordMessage =
           "Your password is to short. Min length for is 8";
         this.errorPassword = true;
@@ -135,7 +122,7 @@ export default {
         this.errorPasswordMessage = "Your passwords do not match";
         this.errorPassword = true;
         this.accessPassword = false;
-      } else {
+      } else if(this.password === this.confirmPassword) {
         this.errorPasswordMessage = "";
         this.errorPassword = false;
         this.accessPassword = true;
